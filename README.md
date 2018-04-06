@@ -51,17 +51,20 @@ dots.insets = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 10)
 ```
 
 There are three options available for dots selection:
-*none* - user can't select dot by tapping on it
-*direct* - user selects dot by tapping on it
-*progressive* - works more like UIPageControl. Tapping from the right side selects next dot. Tapping from the left side selects the previous dot.
 
-Default is *direct*. Change it from code:
+  * **none** - user can't select dot by tapping on it
+
+  * **direct** - user selects dot by tapping on it
+
+  * **progressive** - works more like UIPageControl. Tapping from the right side selects next dot. Tapping from the left side selects the previous dot.
+
+Default is **direct**. Change it from code:
 ```swift
 dots.selectionType = .progressive
 ```
 
 
-Use *delegate* if you want to limit selection of some dots
+Use **delegate** if you want to limit selection of some dots
 ```swift
 dots.delegate = self
 
