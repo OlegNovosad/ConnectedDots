@@ -1,0 +1,6 @@
+use_frameworks!
+target 'ConnectedDots_Tests' do
+  pod 'ConnectedDots', :path => '../'
+  
+  
+end
