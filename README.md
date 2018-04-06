@@ -1,5 +1,6 @@
 # ConnectedDots
 
+[![CI Status](http://img.shields.io/travis/balabanskyy/ConnectedDots.svg?style=flat)](https://travis-ci.org/balabanskyy/ConnectedDots)
 [![Version](https://img.shields.io/cocoapods/v/ConnectedDots.svg?style=flat)](http://cocoapods.org/pods/ConnectedDots)
 [![License](https://img.shields.io/cocoapods/l/ConnectedDots.svg?style=flat)](http://cocoapods.org/pods/ConnectedDots)
 [![Platform](https://img.shields.io/cocoapods/p/ConnectedDots.svg?style=flat)](http://cocoapods.org/pods/ConnectedDots)

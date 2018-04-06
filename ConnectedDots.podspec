@@ -29,7 +29,6 @@ TODO: Add long description of the pod here.
   # s.social_media_url = 'https://twitter.com/balabanskyy'
 
   s.ios.deployment_target = '10.0'
-  s.swift_version = '4.0'
   s.source_files = 'ConnectedDots/Classes/**/*'
   
   # s.resource_bundles = {
