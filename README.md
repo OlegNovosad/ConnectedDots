@@ -46,13 +46,15 @@ dots.textColor = .darkGray
 //Filled dots text color
 dots.filledDotTextColor = .white
 
+//Change to start dot text from different number (*default is 0*)
+dots.textStartingNumber = 0
+
 //Change dot selection outline color and width
 dots.selectionOutlineColor = .red
 dots.selectionOutlineWidth = 2.0
 
 //Change content insets 
 dots.insets = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 10)
-
 
 ```
 
