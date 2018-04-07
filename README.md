@@ -35,7 +35,7 @@ dots.dotRadius = 20.0
 dots.connectorLineWidth = 6.0
 
 //Whether to show number inside dot
-dots.showText = .blue
+dots.showText = true
 
 //Dots number font
 dots.textFont = UIFont.systemFont(ofSize: 20.0)
