@@ -5,7 +5,7 @@
 [![License](https://img.shields.io/cocoapods/l/ConnectedDots.svg?style=flat)](http://cocoapods.org/pods/ConnectedDots)
 [![Platform](https://img.shields.io/cocoapods/p/ConnectedDots.svg?style=flat)](http://cocoapods.org/pods/ConnectedDots)
 
-<img src="sample.gif" width="278" height="58" />
+<img src="sample.gif" width="300" height="169" />
 
 ## Installation
 
@@ -39,6 +39,12 @@ dots.showText = true
 
 //Dots number font
 dots.textFont = UIFont.systemFont(ofSize: 20.0)
+
+//Dots number text color
+dots.textColor = .darkGray
+
+//Filled dots text color
+dots.filledDotTextColor = .white
 
 //Change dot selection outline color and width
 dots.selectionOutlineColor = .red
