@@ -22,14 +22,14 @@
 
 import UIKit
 
-protocol ConnectedDotsDelegate: class {
+public protocol ConnectedDotsDelegate: class {
     func connectedDots(_ connectedDots: ConnectedDots, shouldSelectDotAt index:Int) -> Bool
 }
 
 @IBDesignable public class ConnectedDots: UIControl {
-
+    
     //MARK: Constants
-    enum SelectionType {
+    public enum SelectionType {
         
         /// Select directly dot that was tapped
         case direct
@@ -45,49 +45,49 @@ protocol ConnectedDotsDelegate: class {
     //MARK: - Inspectable Configuration Properies
     
     /// Number of dots to draw in component
-    @IBInspectable var numberOfDots: Int = 6
+    @IBInspectable public var numberOfDots: Int = 6
     
     ///Default background color for dots and connection lines
-    @IBInspectable var defaultColor: UIColor = .lightGray
+    @IBInspectable public var defaultColor: UIColor = .lightGray
     
     ///Selection outline color for dot
-    @IBInspectable var selectionOutlineColor: UIColor = .darkGray
+    @IBInspectable public var selectionOutlineColor: UIColor = .darkGray
     
     ///Selection outline width
-    @IBInspectable var selectionOutlineWidth: CGFloat = 1.0
+    @IBInspectable public var selectionOutlineWidth: CGFloat = 1.0
     
     ///Property that defines if text should be shown
-    @IBInspectable var showText: Bool = true
+    @IBInspectable public var showText: Bool = true
     
     ///Dot radius
-    @IBInspectable var dotRadius: CGFloat = 10.0
+    @IBInspectable public var dotRadius: CGFloat = 10.0
     private var dotDiameter: CGFloat {
         return dotRadius * 2.0
     }
     
     ///Width of the line that connects two dots
-    @IBInspectable var connectorLineWidth: CGFloat = 4.0
+    @IBInspectable public var connectorLineWidth: CGFloat = 4.0
     
     //MARK: - Public Configuration Properties
     
     ///Content insets
-    var insets: UIEdgeInsets = UIEdgeInsets.zero
+    public var insets: UIEdgeInsets = UIEdgeInsets.zero
     
     ///Font of dots text
-    var textFont = UIFont.systemFont(ofSize: 16.0)
+    public var textFont = UIFont.systemFont(ofSize: 16.0)
     
     //MARK: Public Behaviour Properties
     
     ///Read-only property for selected dot index.
     ///Returns nil if no dot is selected
-    var selectedDotIndex: Int? {
+    public var selectedDotIndex: Int? {
         return selectedIndex
     }
     
-    var selectionType: SelectionType = .direct
+    public var selectionType: SelectionType = .direct
     
     //MARK: - Delegate
-    weak var delegate: ConnectedDotsDelegate?
+    weak public var delegate: ConnectedDotsDelegate?
     
     //MARK: - Private properties
     
@@ -213,7 +213,7 @@ protocol ConnectedDotsDelegate: class {
     /// - Parameters:
     ///   - color: Color to set as dot fill
     ///   - index: index of dot to apply color to
-    func setFillColor(_ color: UIColor, forDotWithIndex index:Int) {
+    public func setFillColor(_ color: UIColor, forDotWithIndex index:Int) {
         dotFillColors[index] = color
         setNeedsDisplay()
     }
@@ -221,21 +221,21 @@ protocol ConnectedDotsDelegate: class {
     /// Removes fill color for dot and uses default color instead
     ///
     /// - Parameter index: Dot index
-    func resetDotFillColor(atIndex index:Int) {
+    public func resetDotFillColor(atIndex index:Int) {
         dotFillColors.removeValue(forKey: index)
         setNeedsDisplay()
     }
     
     /// Resets all fill colors
-    func resetFillColors() {
+    public func resetFillColors() {
         dotFillColors = [Int: UIColor]()
         setNeedsDisplay()
     }
-
+    
     /// Selects dot at index
     ///
     /// - Parameter index: Index to select dot
-    func selectDot(atIndex index: Int) {
+    public func selectDot(atIndex index: Int) {
         if delegate == nil || delegate!.connectedDots(self, shouldSelectDotAt: index) {
             if index < 0 {
                 selectedIndex = 0
@@ -244,14 +244,14 @@ protocol ConnectedDotsDelegate: class {
                 selectedIndex = numberOfDots > 0 ? numberOfDots - 1 : 0
             }
             else {
-                selectedIndex = index                
+                selectedIndex = index
             }
         }
     }
     
     
     /// Removes selection from current selected dot
-    func deselectDot() {
+    public func deselectDot() {
         selectedIndex = nil
     }
     
