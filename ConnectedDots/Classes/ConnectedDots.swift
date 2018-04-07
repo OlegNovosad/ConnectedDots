@@ -71,6 +71,9 @@ public protocol ConnectedDotsDelegate: class {
     ///Color fot text in filled dot
     @IBInspectable public var filledDotTextColor: UIColor = .white
     
+    ///Number to start generating text for dots
+    @IBInspectable public var textStartingNumber: Int = 0
+    
     ///Width of the line that connects two dots
     @IBInspectable public var connectorLineWidth: CGFloat = 4.0
     
@@ -183,7 +186,7 @@ public protocol ConnectedDotsDelegate: class {
             //Draw text if needed
             if showText {
                 let color = dotFillColors[index] != nil ? filledDotTextColor : textColor
-                drawText("\(index)", inDotRect: currentDotRect, color: color)
+                drawText("\(index + textStartingNumber)", inDotRect: currentDotRect, color: color)
             }
             
             //Move to next dot frame
