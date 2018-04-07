@@ -1,16 +1,16 @@
 /**
  * Copyright (c) 2018 Artur Balabanskyy <balabanskyy@gmail.com>
-
+ 
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
-
+ 
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
-
+ 
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -47,6 +47,12 @@ public protocol ConnectedDotsDelegate: class {
     /// Number of dots to draw in component
     @IBInspectable public var numberOfDots: Int = 6
     
+    ///Dot radius
+    @IBInspectable public var dotRadius: CGFloat = 10.0
+    private var dotDiameter: CGFloat {
+        return dotRadius * 2.0
+    }
+    
     ///Default background color for dots and connection lines
     @IBInspectable public var defaultColor: UIColor = .lightGray
     
@@ -59,14 +65,15 @@ public protocol ConnectedDotsDelegate: class {
     ///Property that defines if text should be shown
     @IBInspectable public var showText: Bool = true
     
-    ///Dot radius
-    @IBInspectable public var dotRadius: CGFloat = 10.0
-    private var dotDiameter: CGFloat {
-        return dotRadius * 2.0
-    }
+    ///Color fot text in dot
+    @IBInspectable public var textColor: UIColor = .darkGray
+    
+    ///Color fot text in filled dot
+    @IBInspectable public var filledDotTextColor: UIColor = .white
     
     ///Width of the line that connects two dots
     @IBInspectable public var connectorLineWidth: CGFloat = 4.0
+    
     
     //MARK: - Public Configuration Properties
     
@@ -175,7 +182,8 @@ public protocol ConnectedDotsDelegate: class {
             
             //Draw text if needed
             if showText {
-                drawText("\(index)", inDotRect: currentDotRect)
+                let color = dotFillColors[index] != nil ? filledDotTextColor : textColor
+                drawText("\(index)", inDotRect: currentDotRect, color: color)
             }
             
             //Move to next dot frame
@@ -189,14 +197,17 @@ public protocol ConnectedDotsDelegate: class {
     /// - Parameters:
     ///   - text: Text to draw
     ///   - rect: Dot frame to draw text inside
-    private func drawText(_ text:String, inDotRect rect:CGRect) {
+    ///   - rcolor: Color of text
+    private func drawText(_ text:String, inDotRect rect:CGRect, color:UIColor) {
         
         let text = NSString(string:text)
         
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.alignment = NSTextAlignment.center
         
-        let attributes = [NSAttributedStringKey.paragraphStyle: paragraphStyle,NSAttributedStringKey.foregroundColor: UIColor.white, NSAttributedStringKey.font: textFont]
+        let attributes = [NSAttributedStringKey.paragraphStyle: paragraphStyle,
+                          NSAttributedStringKey.foregroundColor: color,
+                          NSAttributedStringKey.font: textFont]
         
         let fontHeight = text.size(withAttributes: attributes).height
         let yOffset = (rect.size.height - fontHeight) / 2.0 + rect.origin.y
